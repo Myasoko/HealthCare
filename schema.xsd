@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="DenValueType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Pondělí"/>
+            <xs:enumeration value="Úterý"/>
+            <xs:enumeration value="Středa"/>
+            <xs:enumeration value="Čtvrtek"/>
+            <xs:enumeration value="Pátek"/>
+            <!-- Omezení na povolená jména pracovních dní -->
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="DenType">
+        <xs:simpleContent>
+            <xs:extension base="DenValueType">
+                <xs:attribute name="od" type="xs:time"/>
+                <xs:attribute name="do" type="xs:time"/>
+                <xs:attribute name="specialni" type="xs:boolean" default="false"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:element name="zdravotni_centrum">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="informace" type="InformaceType"/>
+                <xs:element name="oddeleni" type="OddeleniType" maxOccurs="unbounded"/>
+                <xs:element name="sluzby" type="SluzbyType"/>
+                <xs:element name="novinky" type="NovinkyType"/>
+                <xs:element name="certifikace" type="xs:string"/>
+                <xs:element name="hodnoceni" type="HodnoceniType"/>
+            </xs:sequence>
+            <xs:attribute name="verze" type="xs:string" default="1.0"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="InformaceType">
+        <xs:sequence>
+            <xs:element name="nazev" type="xs:string"/>
+            <xs:element name="adresa">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ulice" type="xs:string"/>
+                        <xs:element name="mesto" type="xs:string"/>
+                        <xs:element name="psc">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:pattern value="[0-9]{5}"/>
+                                    <!-- Omezení na pěticiferné poštovní směrovací číslo -->
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="zeme" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kontakt">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="email" type="xs:string"/>
+                        <xs:element name="web" type="xs:string"/>
+                        <xs:element name="telefon" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="oteviraci_doba">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="den" type="DenType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OddeleniType">
+        <xs:sequence>
+            <xs:element name="oddeleni_nazev" type="xs:string"/>
+            <xs:element name="lekar" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="jmeno" type="xs:string"/>
+                        <xs:element name="kontakt">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="telefon" type="xs:string"/>
+                                    <xs:element name="email" type="xs:string"/>
+                                    <xs:element name="web" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="ordinacni_hodiny">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="den" type="DenType" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:string" use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SluzbyType">
+        <xs:sequence>
+            <xs:element name="kategorie" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sluzba" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="nazev" type="xs:string"/>
+                                    <xs:element name="popis" type="xs:string"/>
+                                    <xs:element name="cena">
+                                        <xs:complexType>
+                                            <xs:simpleContent>
+                                                <xs:extension base="xs:decimal">
+                                                    <xs:attribute name="jednotka" type="xs:string" use="required"/>
+                                                </xs:extension>
+                                            </xs:simpleContent>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="dostupnost">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:pattern value="((Po|Út|St|Čt|Pá|So|Ne)(, (Po|Út|St|Čt|Pá|So|Ne))*)|denně"/>
+                                                <!-- Omezení na formát dnů dostupnosti nebo "denně" -->
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                                <xs:attribute name="id" type="xs:string" use="required"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="nazev" type="xs:string" use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="NovinkyType">
+        <xs:sequence>
+            <xs:element name="kategorie" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="clanek" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="nadpis">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="5"/>
+                                                <xs:maxLength value="100"/>
+                                                <!-- Omezení na délku nadpisu novinky -->
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="text">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="10"/>
+                                                <xs:maxLength value="500"/>
+                                                <!-- Omezení na délku textu novinky -->
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                                <xs:attribute name="id" type="xs:string" use="required"/>
+                                <xs:attribute name="datum" type="xs:date" use="required"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="nazev" type="xs:string" use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="HodnoceniType">
+        <xs:sequence>
+            <xs:element name="skore" type="xs:integer"/>
+            <xs:element name="recenze" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

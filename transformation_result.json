@@ -1,0 +1,293 @@
+{
+  "nazev": "Zdravotní centrum",
+  "verze": "1.0",
+  "adresa": {
+    "ulice": "Hlavní 123",
+    "mesto": "Praha",
+    "psc": "11000",
+    "zeme": "Česká Republika"
+  },
+  "kontakt": {
+    "email": "info@zdravotni-centrum.cz",
+    "web": "https://www.zdravotni-centrum.cz",
+    "telefon": "+420123456789"
+  },
+  "oteviraci_doba": [
+    {
+      "den": "Pondělí",
+      "od": "08:00:00",
+      "do": "18:00:00",
+      "specialni": false
+    },
+    {
+      "den": "Úterý",
+      "od": "08:00:00",
+      "do": "18:00:00",
+      "specialni": false
+    },
+    {
+      "den": "Středa",
+      "od": "08:00:00",
+      "do": "18:00:00",
+      "specialni": false
+    },
+    {
+      "den": "Čtvrtek",
+      "od": "08:00:00",
+      "do": "18:00:00",
+      "specialni": false
+    },
+    {
+      "den": "Pátek",
+      "od": "08:00:00",
+      "do": "18:00:00",
+      "specialni": true
+    }
+  ],
+  "oddeleni": [
+    {
+      "oddeleni_nazev": "Kardiologie",
+      "lekari": [
+        {
+          "id": "l1",
+          "jmeno": "MUDr. Anna Svobodová",
+          "kontakt": {
+            "telefon": "+420111222333",
+            "email": "svobodova@zdravotni-centrum.cz",
+            "web": "https://www.zdravotni-centrum.cz/lekari/svobodova"
+          },
+          "ordinacni_hodiny": [
+            {
+              "den": "Pondělí",
+              "od": "08:00:00",
+              "do": "14:00:00",
+              "specialni": false
+            },
+            {
+              "den": "Středa",
+              "od": "09:00:00",
+              "do": "15:00:00",
+              "specialni": false
+            }
+          ]
+        },
+        {
+          "id": "l2",
+          "jmeno": "MUDr. Petr Novotný",
+          "kontakt": {
+            "telefon": "+420222333444",
+            "email": "novotny@zdravotni-centrum.cz",
+            "web": "https://www.zdravotni-centrum.cz/lekari/novotny"
+          },
+          "ordinacni_hodiny": [
+            {
+              "den": "Úterý",
+              "od": "09:00:00",
+              "do": "15:00:00",
+              "specialni": false
+            },
+            {
+              "den": "Čtvrtek",
+              "od": "08:00:00",
+              "do": "14:00:00",
+              "specialni": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "oddeleni_nazev": "Neurologie",
+      "lekari": [
+        {
+          "id": "l3",
+          "jmeno": "MUDr. Jana Kovářová",
+          "kontakt": {
+            "telefon": "+420333444555",
+            "email": "kovarova@zdravotni-centrum.cz",
+            "web": "https://www.zdravotni-centrum.cz/lekari/kovarova"
+          },
+          "ordinacni_hodiny": [
+            {
+              "den": "Pondělí",
+              "od": "08:00:00",
+              "do": "16:00:00",
+              "specialni": false
+            },
+            {
+              "den": "Středa",
+              "od": "08:00:00",
+              "do": "16:00:00",
+              "specialni": false
+            }
+          ]
+        },
+        {
+          "id": "l4",
+          "jmeno": "MUDr. Tomáš Dvořák",
+          "kontakt": {
+            "telefon": "+420444555666",
+            "email": "dvorak@zdravotni-centrum.cz",
+            "web": "https://www.zdravotni-centrum.cz/lekari/dvorak"
+          },
+          "ordinacni_hodiny": [
+            {
+              "den": "Úterý",
+              "od": "09:00:00",
+              "do": "15:00:00",
+              "specialni": false
+            },
+            {
+              "den": "Čtvrtek",
+              "od": "09:00:00",
+              "do": "15:00:00",
+              "specialni": false
+            }
+          ]
+        },
+        {
+          "id": "l5",
+          "jmeno": "MUDr. Martin Veselý",
+          "kontakt": {
+            "telefon": "+420555666777",
+            "email": "vesely@zdravotni-centrum.cz",
+            "web": "https://www.zdravotni-centrum.cz/lekari/vesely"
+          },
+          "ordinacni_hodiny": [
+            {
+              "den": "Pondělí",
+              "od": "08:00:00",
+              "do": "12:00:00",
+              "specialni": false
+            },
+            {
+              "den": "Pátek",
+              "od": "08:00:00",
+              "do": "12:00:00",
+              "specialni": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sluzby": [
+    {
+      "kategorie": "Diagnostika",
+      "sluzby": [
+        {
+          "id": "s1",
+          "nazev": "EKG vyšetření",
+          "popis": "Elektrokardiografické vyšetření s interpretací",
+          "cena": {
+            "hodnota": 1000,
+            "jednotka": "CZK"
+          },
+          "dostupnost": "denně"
+        },
+        {
+          "id": "s2",
+          "nazev": "Magnetická rezonance",
+          "popis": "Detailní zobrazení vnitřních orgánů",
+          "cena": {
+            "hodnota": 5000,
+            "jednotka": "CZK"
+          },
+          "dostupnost": "Út, Čt"
+        }
+      ]
+    },
+    {
+      "kategorie": "Léčba",
+      "sluzby": [
+        {
+          "id": "s3",
+          "nazev": "Fyzioterapie",
+          "popis": "Individuální rehabilitační program",
+          "cena": {
+            "hodnota": 900,
+            "jednotka": "CZK"
+          },
+          "dostupnost": "Po, St, Pá"
+        },
+        {
+          "id": "s4",
+          "nazev": "Psychoterapie",
+          "popis": "Individuální sezení s psychologem",
+          "cena": {
+            "hodnota": 1500,
+            "jednotka": "CZK"
+          },
+          "dostupnost": "Po, Čt"
+        }
+      ]
+    },
+    {
+      "kategorie": "Poradenství",
+      "sluzby": [
+        {
+          "id": "s5",
+          "nazev": "Nutriční poradenství",
+          "popis": "Konzultace s výživovým specialistou",
+          "cena": {
+            "hodnota": 1200,
+            "jednotka": "CZK"
+          },
+          "dostupnost": "St, Pá"
+        }
+      ]
+    }
+  ],
+  "novinky": [
+    {
+      "kategorie": "Události",
+      "clanky": [
+        {
+          "id": "n1",
+          "datum": "2025-04-01",
+          "nadpis": "Nové vybavení v kardiologii",
+          "text": "Zavedli jsme nový EKG přístroj pro přesnější diagnostiku."
+        },
+        {
+          "id": "n2",
+          "datum": "2025-03-25",
+          "nadpis": "Den otevřených dveří",
+          "text": "Zveme vás na den otevřených dveří, který se koná 15. dubna 2025."
+        }
+      ]
+    },
+    {
+      "kategorie": "Personální změny",
+      "clanky": [
+        {
+          "id": "n3",
+          "datum": "2025-03-20",
+          "nadpis": "Nový neurolog v týmu",
+          "text": "MUDr. Martin Veselý se připojil k našemu týmu."
+        }
+      ]
+    },
+    {
+      "kategorie": "Programy",
+      "clanky": [
+        {
+          "id": "n4",
+          "datum": "2025-03-15",
+          "nadpis": "Preventivní programy",
+          "text": "Spouštíme nové preventivní programy pro seniory."
+        },
+        {
+          "id": "n5",
+          "datum": "2025-03-10",
+          "nadpis": "Modernizace ordinací",
+          "text": "Ordinace byly vybaveny novým zařízením."
+        }
+      ]
+    }
+  ],
+  "certifikace": "ISO 9001",
+  "hodnoceni": {
+    "skore": 95,
+    "recenze": "Vynikající péče"
+  }
+}
